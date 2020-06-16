@@ -7,6 +7,7 @@ var chalk = require("chalk");
 var yargs = require("yargs");
 
 var getNotes = require("./notes");
+const { demandOption } = require("yargs");
 
 var info = getNotes();
 // console.log(info)
@@ -27,6 +28,12 @@ var info = getNotes();
 yargs.command({
     command: "add",
     describe: "add new a note",
+    builder: {
+        title: {
+            describe: "note title",
+            demandOption: true,
+        },
+    },
     handler: function() {
         console.log("adding a new note");
     }
@@ -36,8 +43,19 @@ yargs.command({
 yargs.command({
     command: "list",
     describe: "list your notes",
-    handler: function() {
-        console.log("adding a new note");
+    builder: {
+        title: {
+            describe: "note title",
+            demandOption: true,
+        },
+        body: {
+            describe: "note body",
+            demandOption: true,
+        },
+    },
+    handler: function(argv) {
+        console.log("title: " + argv.title);
+        console.log("Body: " + argv.body);
     }
 });
 
