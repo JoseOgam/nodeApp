@@ -15,4 +15,5 @@ var book = {
 // console.log(bookData);
 
 var dataJSON = fs.readFileSync("data.json");
-console.log(dataJSON.toString());
+var data = dataJSON.toString();
+console.log(JSON.parse(data));
