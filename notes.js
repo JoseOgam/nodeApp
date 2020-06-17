@@ -4,13 +4,26 @@ var getNotes = function() {
 }
 
 var addNote = function(title, body) {
-    var notes = laodNote();
+    var notes = loadNote();
+    var duplicateNotes = notes.filter(function(note) {
+        return note.title === title;
+    });
+    if (duplicateNotes === 0) {
+        notes.push({
+            title: title,
+            body: body,
+        });
+        saveNotes(notes);
+        console.log("new note added")
+    } else {
+        console.log("note title taken");
+    }
 }
 var saveNotes = function(notes) {
     var dataJSON = JSON.stringify(notes);
     fs.writeFileSync("notes.json", dataJSON);
 }
-var laodNote = function() {
+var loadNote = function() {
     try {
         var data = fs.readFileSync(notes.json);
         var dataJSON = data.toString();
@@ -20,4 +33,4 @@ var laodNote = function() {
     }
 }
 
-module.exports = getNotes;
+module.exports = { getNotes, addNote };

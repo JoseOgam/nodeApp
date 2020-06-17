@@ -6,10 +6,10 @@ var validator = require("validator");
 var chalk = require("chalk");
 var yargs = require("yargs");
 
-var getNotes = require("./notes");
-const { demandOption } = require("yargs");
+var notes = require("./notes");
+const { demandOption, string } = require("yargs");
 
-var info = getNotes();
+var info = notes.getNotes();
 // console.log(info)
 // console.log(chalk.blue('Hello world!'));
 // console.log(validator.isEmail("jotienoochieng@gmail.com"));
@@ -26,7 +26,7 @@ var info = getNotes();
 
 //create add command
 yargs.command({
-    command: "add",
+    command: "list",
     describe: "add new a note",
     builder: {
         title: {
@@ -39,23 +39,26 @@ yargs.command({
     }
 });
 
-//create list command
+//create add command
 yargs.command({
-    command: "list",
+    command: "add",
     describe: "list your notes",
     builder: {
         title: {
             describe: "note title",
             demandOption: true,
+            // type: "string",
         },
         body: {
             describe: "note body",
             demandOption: true,
+            type: "string",
         },
     },
-    handler: function(argv) {
-        console.log("title: " + argv.title);
-        console.log("Body: " + argv.body);
+    handler: function(dataNote) {
+        // console.log("title: " + argv.title);
+        // console.log("Body: " + argv.body);
+        notes.addNote(dataNote.title, dataNote.body);
     }
 });
 
