@@ -19,13 +19,26 @@ var addNote = function(title, body) {
         console.log("note title taken");
     }
 }
+var removeNotes = function(title) {
+    var notes = loadNote();
+    var notesToKeep = notes.filter(function(note) {
+        return note.title !== title;
+    });
+    if (notes.length > notesToKeep.length) {
+        console.log("note removed");
+        saveNotes(notesToKeep);
+    } else {
+        console.log("notes not found");
+    }
+}
+
 var saveNotes = function(notes) {
     var dataJSON = JSON.stringify(notes);
     fs.writeFileSync("notes.json", dataJSON);
 }
 var loadNote = function() {
     try {
-        var data = fs.readFileSync(notes.json);
+        var data = fs.readFileSync("notes.json");
         var dataJSON = data.toString();
         return JSON.parse(dataJSON);
     } catch (e) {
@@ -33,4 +46,4 @@ var loadNote = function() {
     }
 }
 
-module.exports = { getNotes, addNote };
+module.exports = { getNotes, addNote, removeNotes };

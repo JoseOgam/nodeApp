@@ -39,6 +39,24 @@ yargs.command({
     }
 });
 
+//create remove command
+yargs.command({
+    command: "remove",
+    describe: "remove note",
+    builder: {
+        title: {
+            describe: "note title",
+            demandOption: true,
+            // type: "string",
+        },
+    },
+    handler: function(dataNote) {
+        // console.log("title: " + argv.title);
+        // console.log("Body: " + argv.body);
+        notes.removeNotes(dataNote.title);
+    }
+});
+
 //create add command
 yargs.command({
     command: "add",
