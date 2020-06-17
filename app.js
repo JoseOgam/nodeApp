@@ -27,10 +27,10 @@ var info = notes.getNotes();
 //create add command
 yargs.command({
     command: "list",
-    describe: "add new a note",
+    describe: "list all your note",
     builder: {
         title: {
-            describe: "note title",
+            describe: "list all your notes",
             demandOption: true,
         },
     },
@@ -42,7 +42,7 @@ yargs.command({
 //create add command
 yargs.command({
     command: "add",
-    describe: "list your notes",
+    describe: "add a new note",
     builder: {
         title: {
             describe: "note title",

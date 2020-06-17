@@ -8,7 +8,7 @@ var addNote = function(title, body) {
     var duplicateNotes = notes.filter(function(note) {
         return note.title === title;
     });
-    if (duplicateNotes === 0) {
+    if (duplicateNotes.length === 0) {
         notes.push({
             title: title,
             body: body,
