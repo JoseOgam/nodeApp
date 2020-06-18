@@ -31,7 +31,14 @@ var removeNotes = function(title) {
         console.log("notes not found");
     }
 }
+var listNotes = function() {
+    const notes = loadNote();
+    console.log("your notes");
+    notes.forEach((notes) => {
+        console.log(notes);
+    })
 
+}
 var saveNotes = function(notes) {
     var dataJSON = JSON.stringify(notes);
     fs.writeFileSync("notes.json", dataJSON);
@@ -46,4 +53,4 @@ var loadNote = function() {
     }
 }
 
-module.exports = { getNotes, addNote, removeNotes };
+module.exports = { getNotes, addNote, removeNotes, listNotes };

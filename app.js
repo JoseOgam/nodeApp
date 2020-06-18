@@ -28,14 +28,8 @@ var info = notes.getNotes();
 yargs.command({
     command: "list",
     describe: "list all your note",
-    builder: {
-        title: {
-            describe: "list all your notes",
-            demandOption: true,
-        },
-    },
     handler: function() {
-        console.log("adding a new note");
+        notes.listNotes();
     }
 });
 
