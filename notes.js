@@ -35,9 +35,21 @@ var listNotes = function() {
     const notes = loadNote();
     console.log("your notes");
     notes.forEach((notes) => {
-        console.log(notes);
+        console.log(notes.title);
     })
 
+}
+var readNotes = (title) => {
+    var notes = loadNote();
+    var note = notes.find((note) => {
+        return note.title === title;
+    })
+    if (note) {
+        console.log(note.title);
+        console.log(note.body);
+    } else {
+        console.log("note does not exist")
+    }
 }
 var saveNotes = function(notes) {
     var dataJSON = JSON.stringify(notes);
@@ -53,4 +65,4 @@ var loadNote = function() {
     }
 }
 
-module.exports = { getNotes, addNote, removeNotes, listNotes };
+module.exports = { getNotes, addNote, removeNotes, listNotes, readNotes };

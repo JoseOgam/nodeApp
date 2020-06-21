@@ -73,5 +73,22 @@ yargs.command({
         notes.addNote(dataNote.title, dataNote.body);
     }
 });
+//create read command
+yargs.command({
+    command: "read",
+    describe: "read a note",
+    builder: {
+        title: {
+            describe: "note body",
+            demandOption: true,
+            type: "string",
+        }
+    },
+    handler: function(noteData) {
+        // console.log("title: " + argv.title);
+        // console.log("Body: " + argv.body);
+        notes.readNotes(noteData.title);
+    }
 
+})
 console.log(yargs.argv);
